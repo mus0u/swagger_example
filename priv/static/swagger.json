@@ -1,0 +1,110 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/api/v1/tree_nodes": {
+      "get": {
+        "tags": [
+          "TreeNode"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TreeNodes"
+            },
+            "description": "Success"
+          }
+        },
+        "parameters": [],
+        "operationId": "SwaggerExampleWeb.TreeNodeController.index",
+        "description": "Fetches all tree nodes"
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "Swagger Example"
+  },
+  "host": "localhost:4000",
+  "definitions": {
+    "TreeNodes": {
+      "type": "object",
+      "title": "Tree Nodes",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TreeNode"
+          }
+        }
+      },
+      "description": "A collection of tree nodes"
+    },
+    "TreeNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The JSON-API resource type"
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "parent": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "description": "Relationship link for parent"
+                    },
+                    "related": {
+                      "type": "string",
+                      "description": "Related parent link"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "Type of related parent resource"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Related parent resource id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "links": {
+          "type": "object",
+          "properties": {}
+        },
+        "id": {
+          "type": "string",
+          "description": "The JSON-API resource ID"
+        },
+        "attributes": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the node"
+            }
+          }
+        }
+      },
+      "description": "A tree node"
+    }
+  }
+}
